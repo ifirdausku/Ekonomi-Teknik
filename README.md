@@ -7,6 +7,8 @@
 
 #### Loan Repament / Penghitungan pinjaman (flat)
 
+>Project masih dalam tahap pengembangan
+
 ### Find Me On
 
 * [E-Mail](mailto:ifirdausku@gmail.com)
