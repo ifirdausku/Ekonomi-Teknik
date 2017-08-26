@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<title>Ekonomi Teknik</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="css/style.css">
+<script>
+function randomPVProblem(form) {
+ 	var theFV = Math.round((Math.random()*1000)+1); 
+ 	var theNR = Math.round((Math.random()*2000)+1)/100; 
+ 	var theNP = Math.round((Math.random()*25)+1);
+ 	form.FVInput.value="" + theFV; 
+ 	form.NRInput.value="" + theNR; 
+ 	form.NPInput.value="" + theNP;
+ 	form.PVOutput.value="";
+ }
+ 
+ function findPV(form) {
+ 	var theFV = form.FVInput.value;
+ 	if (!isPositiveNumber(theFV)) {
+ 		return false;
+ 	}
+ 	var theNP = form.NPInput.value;
+ 	if (!isPositiveNumber(theNP)) {
+ 		return false;
+ 	}
+ 	var theNR = form.NRInput.value;
+ 	if (!isPositiveNumber(theNR)) {
+ 		return false;
+ 	}
+ 	var thePV = theFV/Math.pow((1 + theNR/100),theNP);
+ 	form.PVOutput.value = "" + Math.round(thePV*100)/100;
+ 	return true;
+ }
+ 
+ function isPositiveNumber(inputStr) {
+ 	for (var i = 0; i < inputStr.length; i++) {
+ 		var oneChar = inputStr.substring(i,i+1);
+ 		if (((oneChar >= "0") && (oneChar <= "9")) || (oneChar == ".")) {
+ 		
+ 		} else {
+ 			alert("Masukan hanya angka.");
+ 			return false;
+ 		} 
+ 	}
+	return true;
+ }
 
+function calcHelp(form) {
+ 	var theFV = form.FVInput.value;
+ 	if (!isPositiveNumber(theFV)) {
+ 		return false;
+ 	}
+ 	var theNP = form.NPInput.value;
+ 	if (!isPositiveNumber(theNP)) {
+ 		return false;
+ 	}
+ 	var theNR = form.NRInput.value;
+ 	if (!isPositiveNumber(theNR)) {
+ 		return false;
+ 	}
+ 	var thePV = theFV/Math.pow((1 + theNR/100),theNP);
+ 	thePV = "" + Math.round(thePV*100)/100;
+ 	var theStr = "<HTML><HEAD><TITLE>Bantuan</TITLE></HEAD><BODY BGCOLOR=\"white\">";
+	theStr += "<P>Ikuti petunjuk di bawah ini untuk penghitungan.";
+	theStr += ".</P>";
+	theStr += "<CENTER>"
+	theStr += "<P>Future Value= " + theFV + " Suku Bunga= " + theNR + "% Years= " + theNP + "</P>"
+ 	theStr += "<TABLE border=0 cellpadding=6 cellspacing=2  bgcolor=\"#CCCCCC\">"
+	theStr += "<TR><TD COLSPAN=2><b>Pertama isikan semua inputan.</b></TD></TR>";
+	theStr += "<TR><TD ALIGN=center> </TD><TD ALIGN=center> </TD></TR>";
+	theStr += "<TR><TD COLSPAN=2><b>Lalu, selesaikan masalah.</b></TD></TR>";
+	theStr += "<TR><TD ALIGN=center>" + theFV + "</TD><TD ALIGN=center>[FV]</TD></TR>";
+	theStr += "<TR><TD ALIGN=center>" + theNR + "</TD><TD ALIGN=center>[I]</TD></TR>";
+	theStr += "<TR><TD ALIGN=center>" + theNP + "</TD><TD ALIGN=center>[N]</TD></TR>";
+ 	theStr += "<TR><TD ALIGN=center>[Dicari]</TD><TD ALIGN=center>[PV]</TD></TR>";
+ 	theStr += "<TR><TD COLSPAN=2><b>Present Valuenya adalah " + thePV + "</b></TD></TR></TABLE>";
+	theStr += "<P><FORM NAME=\"Form1\">";
+	theStr += "<INPUT TYPE=\"button\" VALUE=\"   OK   \" onClick=\"window.close();\"></FORM></CENTER>";
+	theStr += "</P></BODY></HTML>"
+ 	var newWin = window.open("","","scrollbars,resizable,width=380,height=360");
+ 	if (newWin != null) {
+ 		newWin.document.write(theStr);
+ 		newWin.document.close();
+ 		newWin.focus();
+ 	}
+ 	return true;
+ }
+</script>
+</head>
+<body>
+<!-- Mixins-->
+<!-- Pen Title-->
+<div class="pen-title">
+  <h1>Ekonomi Teknik</h1><span>Dibuat <i class='fa fa-code'></i> oleh <a href='#'>Muhamad Firdaus Hidayat</a></span>
+</div>
+<div class="rerun">
+<a href="index1.html">Straight Line</a>
+<a href="index2.html">SOYD</a>
+ 
+<a href="index4.html">Present Value</a>
+<a href="index5.html">Future Value</a>
+<a href="index6.html">Loan Repayment</a></div>
+<div class="container">
+  <div class="card"></div>
+  <div class="card">
+    <h1 class="title">Present Value</h1>
+    <form method="POST" name="PracticeProb">
+      <div class="input-container">
+        <input type="text" name="FVInput" required="required"/>
+        <label for="Cost of Asset">Nilai pada akhir tahun ke n / FV</label>
+        <div class="bar"></div>
+      </div>
+	  <div class="input-container">
+        <input type="text" name="NRInput" required="required"/>
+        <label for="Salvage Value">Suku Bunga / r</label>
+        <div class="bar"></div>
+      </div>
+	  <div class="input-container">
+        <input type="text" name="NPInput" required="required"/>
+        <label for="Life of Asset">Masa Pakai / N</label>
+        <div class="bar"></div>
+      </div>
+
+      <div class="input-container">
+        <input type="text" name="PVOutput" required="required"/>
+        <label for="Depreciation for each period">Hasil</label>
+        <div class="bar"></div>
+      </div>
+      <div class="button-container">
+		<input type="button" name="doProb" value="Hitung" onclick="findPV(this.form)">
+		<input type="button" name="newProb" value="Contoh" onclick="randomPVProblem(this.form)">
+		<input type="button" name="doHelp" value="Bantuan" onclick="calcHelp(this.form)">
+      </div>
+      <div class="footer"><a href="#">Muhamad Firdaus Hidayat</a></div>
+    </form>
+  </div>
+  <div class="card alt">
+    <div class="toggle"></div>
+    <h1 class="title">Penjelasan
+      <div class="close"></div>
+    </h1>
+    <form>
+      <div class="input-container">
+    
+    <p>
+	<font color="white">
+	Rumus Present Value = FV ( 1 + r ) ^-n<br>
+    &nbsp; dimana <br>
+	&nbsp; &nbsp; &nbsp; &nbsp; FV = ( Future value ( nilai pada akhir tahun ke n )<br>
+	&nbsp; &nbsp; &nbsp; &nbsp; PV = ( Nilai sekarang ( nilai pada tahun ke 0 )<br>
+	&nbsp; &nbsp; &nbsp; &nbsp; r = Suku bunga / i = interest <br>
+	&nbsp; &nbsp; &nbsp; &nbsp; n = Waktu ( tahun )<br>
+	&nbsp; &nbsp; &nbsp; &nbsp; ^ = tanda pangkat <br>
+	&nbsp; Rumus diatas mengasumsikan bahwa bunga di gandakan hanya sekali dalam setahun <br>
+	
+	</font>
+	</p>
+
+    </form>
+  </div>
+</div>
+<!-- Portfolio--><a id="portfolio" href="about.html" title="Tentang Pembuat"><i class="fa fa-link"></i></a>
+<!-- CodePen--><a id="codepen" href="index.html" title="Home"><i class="fa fa-codepen"></i></a>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src="js/index.js"></script>
+
+  </body>
+</html>
