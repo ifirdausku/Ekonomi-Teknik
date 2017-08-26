@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<title>Ekonomi Teknik</title>
+<link rel="stylesheet" href="css/reset.css">
+<link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="css/style.css">
+<script language="JavaScript">
+function loan()
+{
+  var monthly = document.interest.rate.value / 12 / 100;
+  var start = 1;
+  var length = 1 + monthly;
+  for (i=0; i<document.interest.months.value; i++)
+  {	start = start * length
+  }
+var payment = document.interest.payment.value = Number(document.interest.amount.value * monthly / ( 1 - (1/start)))
+document.interest.payment.value = payment.toFixed(2);
+var totrepay = Number(document.interest.payment.value) * i;
+document.interest.totrepay.value = totrepay.toFixed(2);
+var totint = totrepay - document.interest.amount.value;
+document.interest.totint.value = totint.toFixed(2);
+}
+</script>
+</head>
+<body>
+<!-- Mixins-->
+<!-- Pen Title-->
+<div class="pen-title">
+  <h1>Ekonomi Teknik</h1><span>Dibuat <i class='fa fa-code'></i> oleh <a href='#'>Muhamad Firdaus Hidayat</a></span>
+</div>
+<div class="rerun">
+<a href="index1.html">Straight Line</a>
+<a href="index2.html">SOYD</a>
+ 
+<a href="index4.html">Present Value</a>
+<a href="index5.html">Future Value</a>
+<a href="index6.html">Loan Repayment</a></div>
+<div class="container">
+  <div class="card"></div>
+  <div class="card">
+    <h1 class="title">Loan Repayment</h1>
+    <form method="POST" name="interest">
+      <div class="input-container">
+        <input type="text" name="amount" required="required"/>
+        <label for="Jumlah Pinjaman">Jumlah Pinjaman</label>
+        <div class="bar"></div>
+      </div>
+	  <div class="input-container">
+        <input type="text" name="months" required="required"/>
+        <label for="Bulan">Bulan</label>
+        <div class="bar"></div>
+      </div>
+	  <div class="input-container">
+        <input type="text" name="rate" required="required"/>
+        <label for="Suku Bunga">Suku Bunga</label>
+        <div class="bar"></div>
+      </div>
+	  
+		<center><INPUT TYPE="BUTTON" VALUE="Hitung" onClick="loan()"></center>
+	  
+      <div class="input-container">
+        <input type="text" name="payment" required="required"/>
+        <label for="Bayar Per Bulan">Bayar Per Bulan</label>
+        <div class="bar"></div>
+      </div>
+      <div class="input-container">
+        <input type="text" name="totint" required="required"/>
+        <label for="Total Bunga">Total Bunga</label>
+        <div class="bar"></div>
+      </div>
+	  <div class="input-container">
+        <input type="text" name="totrepay" required="required"/>
+        <label for="Jumlah Total Yang Harus Dibayar">Total Yang Harus Dibayar</label>
+        <div class="bar"></div>
+      </div>
+      <div class="button-container">
+	  </div>
+      <div class="footer"><a href="#">Muhamad Firdaus Hidayat</a></div>
+    </form>
+  </div>
+  <div class="card alt">
+    <div class="toggle"></div>
+    <h1 class="title">Penjelasan
+      <div class="close"></div>
+    </h1>
+    <form>
+      <div class="input-container">
+    
+    <p>
+	<font color="white">
+	Perhitungan ini digunakan untuk<br>
+    menghitung kredit secara flat<br>
+	yang biasa digunakan sehari hari seperti kredit motor, mobil, dll<br>
+	Rumus yang digunakan yaitu<br>
+	P = r(PV) / 1- (1+r)^-n<br>
+    &nbsp; dimana <br>
+	&nbsp; &nbsp; &nbsp; &nbsp; P = Payment (pembayaran)<br>
+	&nbsp; &nbsp; &nbsp; &nbsp; PV = ( Nilai sekarang ( nilai pada tahun ke 0 )<br>
+	&nbsp; &nbsp; &nbsp; &nbsp; r = Suku bunga <br>
+	&nbsp; &nbsp; &nbsp; &nbsp; n = Waktu (tahun) number of periods <br>
+	&nbsp; &nbsp; &nbsp; &nbsp; ^ = tanda pangkat <br>
+	
+	
+	
+	</font>
+	</p>
 
+    </form>
+  </div>
+</div>
+<!-- Portfolio--><a id="portfolio" href="about.html" title="Tentang Pembuat"><i class="fa fa-link"></i></a>
+<!-- CodePen--><a id="codepen" href="index.html" title="Home"><i class="fa fa-codepen"></i></a>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script src="js/index.js"></script>
+  </body>
+</html>
